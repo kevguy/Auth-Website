@@ -23,8 +23,10 @@
 		<td><?php echo $user['User']['email']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link('View', array('action' => 'view', $user['User']['id'])); ?>
-			<?php echo $this->Html->link('Edit', array('action' => 'edit', $user['User']['id'])); ?>
-			<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $user['User']['id']), array('confirm'=>'Are you sure you want to delete that user?')); ?>
+			<?php if ($current_user['id'] == $user['User']['id']): ?>
+				<?php echo $this->Html->link('Edit', array('action' => 'edit', $user['User']['id'])); ?>
+				<?php echo $this->Form->postLink('Delete', array('action' => 'delete', $user['User']['id']), array('confirm'=>'Are you sure you want to delete that user?')); ?>
+			<?php endif; ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
