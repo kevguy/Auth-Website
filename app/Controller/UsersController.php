@@ -3,6 +3,11 @@ class UsersController extends AppController {
 
 	public $name = 'Users';
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('add');
+	}
+
 	public function login() {
 		// check the request type to see if it's a post request
 		// if it is, that means someone is trying to login and submit the form 
