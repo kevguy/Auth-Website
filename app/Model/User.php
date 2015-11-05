@@ -25,6 +25,18 @@ class User extends AppModel {
 				'rule'=>array('email'),
 				'message'=>'Please enter a valid email address'
 			)
+		),
+		'password'=>array(
+			'Not empty'=>array(
+				'rule'=>'notEmpty',
+				'message'=>'Please enter your password'
+			)
+		),
+		'password_confirmation'=>array(
+			'Not empty'=>array(
+				'rule'=>'notEmpty',
+				'message'=>'Please confirm your password'
+			)
 		)
 	);
 }
