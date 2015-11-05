@@ -8,6 +8,15 @@ class UsersController extends AppController {
 		$this->Auth->allow('add');
 	}
 
+	public function isAuthorized($user){
+		if (in_array($this->action, array('edit', 'delete'))) {
+			if ($user['id'] != $this->request->params['pass'][0]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public function login() {
 		// check the request type to see if it's a post request
 		// if it is, that means someone is trying to login and submit the form 
