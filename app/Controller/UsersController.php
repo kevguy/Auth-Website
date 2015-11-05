@@ -3,6 +3,24 @@ class UsersController extends AppController {
 
 	public $name = 'Users';
 
+	public function login() {
+		// check the request type to see if it's a post request
+		// if it is, that means someone is trying to login and submit the form 
+		if ($this->request->is('post')){
+			// so log the user in
+			if ($this->Auth->login()){
+				//redirect the user
+				$this->redirect($this->Auth->redirect());
+			} else {
+				$this->Session->setFlash('Your username/password combination was incorrect');
+			}
+		}
+	}
+
+	public function logout() {
+		$this->redirect($this->Auth->logout());
+	}
+
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->User->find('all'));
