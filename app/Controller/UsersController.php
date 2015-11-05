@@ -9,6 +9,11 @@ class UsersController extends AppController {
 	}
 
 	public function isAuthorized($user){
+		// for admin
+		if ($user['role'] == 'admin'){
+			return true;
+		}
+		// for regular users
 		if (in_array($this->action, array('edit', 'delete'))) {
 			if ($user['id'] != $this->request->params['pass'][0]) {
 				return false;

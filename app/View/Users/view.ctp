@@ -26,7 +26,7 @@
 <div class="actions">
 	<h3>Actions</h3>
 	<ul>
-		<?php if ($current_user['id'] == $user['User']['id']): ?>
+		<?php if ($current_user['id'] == $user['User']['id'] || $current_user['role'] == 'admin'): ?>
 		<li><?php echo $this->Html->link('Edit User', array('action' => 'edit', $user['User']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink('Delete User', array('action' => 'delete', $user['User']['id']), array('confirm'=>'Are you sure you want to delete that user?')); ?> </li>
 		<?php endif; ?>
