@@ -22,5 +22,7 @@ class AppController extends Controller {
 	public function beforeFilter() {
 		// This is for non-login actions
 		$this->Auth->allow('index', 'view');
+		$this->set('logged_in', $this->Auth->loggedIn());
+		$this->set('current_user', $this->Auth->user());
 	}
 }
