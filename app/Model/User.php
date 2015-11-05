@@ -53,5 +53,13 @@ class User extends AppModel {
 		$this->invalidate('password_confirmation', 'Your passwords do not match');
 		return false;
 	}
+
+	public function beforeSave($options = Array()) {
+		// encrypt the password before savig user info
+		if (isset($this->data['User']['password'])){
+			$this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+		}
+		return true;
+	}
 }
 ?>
