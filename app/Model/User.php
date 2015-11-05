@@ -30,6 +30,10 @@ class User extends AppModel {
 			'Not empty'=>array(
 				'rule'=>'notEmpty',
 				'message'=>'Please enter your password'
+			),
+			'Match passwords'=>array(
+				'rule'=>'matchPasswords',
+				'message'=>'Your passwords do not match'
 			)
 		),
 		'password_confirmation'=>array(
@@ -39,5 +43,15 @@ class User extends AppModel {
 			)
 		)
 	);
+
+	public function matchPasswords($data) {
+		// compare password and password_confirmation
+		if ($data['password'] == $this->data['User']['password_confirmation']){
+			return true;
+		}
+		// also invalidate the password_confimration field
+		$this->invalidate('password_confirmation', 'Your passwords do not match');
+		return false;
+	}
 }
 ?>
